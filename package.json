@@ -1,7 +1,7 @@
 {
   "name": "weather_api_new2menot4u",
   "version": "1.0.0",
-  "description": "My fisrt weather API for week 5",
+  "description": "My fisrt weather API week 5",
   "type": "module",
   "engines": {
     "node": ">= 18.12 <21",
