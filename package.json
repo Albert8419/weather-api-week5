@@ -1,0 +1,24 @@
+{
+  "name": "weather_api",
+  "version": "1.0.0",
+  "description": "The Weather API",
+  "type": "module",
+  "engines": {
+    "node": ">= 18.12 <21",
+    "author": "Lucian Duta",
+    "license": "MIT"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "express": "^4.18.3",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "nodemon": "^3.1.0",
+    "npm": "^10.5.0",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
+  }
+}
