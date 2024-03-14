@@ -1,12 +1,12 @@
 {
   "name": "weather_api_new2menot4u",
   "version": "1.0.0",
-  "description": "My fisrt weather API week 5",
+  "description": "My first weather API week 5",
   "type": "module",
+  "author": "Lucian Duta",
+  "license": "MIT",
   "engines": {
-    "node": ">= 18.12 <21",
-    "author": "Lucian Duta",
-    "license": "MIT"
+    "node": ">= 18.12 <21"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
@@ -16,7 +16,9 @@
     "express-validator": "^7.0.1"
   },
   "scripts": {
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "build": "your_build_command_here",
+    "start": "your_start_command_here"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",
@@ -24,7 +26,6 @@
     "@typescript-eslint/parser": "^7.1.0",
     "eslint": "^8.57.0",
     "nodemon": "^3.1.0",
-    "npm": "^10.5.0",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",

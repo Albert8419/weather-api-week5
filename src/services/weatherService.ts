@@ -1,6 +1,9 @@
-import { faker } from '@faker-js/faker';
+import faker from '@faker-js/faker';
+import WeatherData from '../types/WeatherData.ts'; // Corrected import statement for default export
+
 export const generateLondonWeatherData = (): WeatherData => {
-  const generatedWeatherData = {
+  const generatedWeatherData: WeatherData = {
+    city: 'London',
     temperature: faker.number.int({ min: -15, max: 30 }),
     humidity: faker.number.int({ min: 79, max: 86 }),
     wind: faker.number.int({ min: 2, max: 78 }),
@@ -8,8 +11,10 @@ export const generateLondonWeatherData = (): WeatherData => {
   };
   return generatedWeatherData;
 };
+
 export const generateDublinWeatherData = (): WeatherData => {
   const generatedWeatherData: WeatherData = {
+    city: 'Dublin',
     temperature: faker.number.int({ min: -15, max: 30 }),
     humidity: faker.number.int({ min: 79, max: 86 }),
     wind: faker.number.int({ min: 2, max: 78 }),
