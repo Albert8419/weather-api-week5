@@ -1,13 +1,12 @@
-import faker from '@faker-js/faker';
-import WeatherData from '../types/WeatherData.ts'; // Corrected import statement for default export
+import faker from 'faker'; // Correct import statement
 
 export const generateLondonWeatherData = (): WeatherData => {
   const generatedWeatherData: WeatherData = {
     city: 'London',
-    temperature: faker.number.int({ min: -15, max: 30 }),
-    humidity: faker.number.int({ min: 79, max: 86 }),
-    wind: faker.number.int({ min: 2, max: 78 }),
-    rain: faker.number.int({ min: 65, max: 75 }),
+    temperature: faker.datatype.number({ min: -15, max: 30 }), // Corrected usage of faker
+    humidity: faker.datatype.number({ min: 79, max: 86 }), // Corrected usage of faker
+    wind: faker.datatype.number({ min: 2, max: 78 }), // Corrected usage of faker
+    rain: faker.datatype.number({ min: 65, max: 75 }), // Corrected usage of faker
   };
   return generatedWeatherData;
 };
@@ -15,10 +14,10 @@ export const generateLondonWeatherData = (): WeatherData => {
 export const generateDublinWeatherData = (): WeatherData => {
   const generatedWeatherData: WeatherData = {
     city: 'Dublin',
-    temperature: faker.number.int({ min: -15, max: 30 }),
-    humidity: faker.number.int({ min: 79, max: 86 }),
-    wind: faker.number.int({ min: 2, max: 78 }),
-    rain: faker.number.int({ min: 65, max: 75 }),
+    temperature: faker.datatype.number({ min: -15, max: 30 }), // Corrected usage of faker
+    humidity: faker.datatype.number({ min: 79, max: 86 }), // Corrected usage of faker
+    wind: faker.datatype.number({ min: 2, max: 78 }), // Corrected usage of faker
+    rain: faker.datatype.number({ min: 65, max: 75 }), // Corrected usage of faker
   };
   return generatedWeatherData;
 };
