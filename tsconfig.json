@@ -25,7 +25,7 @@
   "noImplicitThis": false,
   "strictNullChecks": false,
   "typeRoots": [
-  "./node_module/@types",
+  "./node_modules/@types",
   "./src/types"
   ]
   }

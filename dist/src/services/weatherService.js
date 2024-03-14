@@ -1,4 +1,6 @@
 import faker from 'faker'; // Correct import statement
+import { storeWeatherdata } from "../helpers/helpers.ts";
+
 export const generateLondonWeatherData = () => {
     const generatedWeatherData = {
         city: 'London',
@@ -7,6 +9,9 @@ export const generateLondonWeatherData = () => {
         wind: faker.datatype.number({ min: 2, max: 78 }), // Corrected usage of faker
         rain: faker.datatype.number({ min: 65, max: 75 }), // Corrected usage of faker
     };
+
+    storeWeatherdata(generatedWeatherData).catch(console.error);
+
     return generatedWeatherData;
 };
 export const generateDublinWeatherData = () => {
@@ -17,6 +22,9 @@ export const generateDublinWeatherData = () => {
         wind: faker.datatype.number({ min: 2, max: 78 }), // Corrected usage of faker
         rain: faker.datatype.number({ min: 65, max: 75 }), // Corrected usage of faker
     };
+
+    storeWeatherdata(generatedWeatherData).catch(console.error);
+
     return generatedWeatherData;
 };
 //# sourceMappingURL=weatherService.js.map
