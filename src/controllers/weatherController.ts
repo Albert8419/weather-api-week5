@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { generateDublinWeatherData, generateLondonWeatherData } from '../services/weatherService.js';
+import { generateDublinWeatherData, generatelondonWeatherData } from '../services/weatherService.js';
 import { validationResult } from 'express-validator';
 
 export const getWeatherData = async (req: Request, res: Response) => {
@@ -13,8 +13,8 @@ export const getWeatherData = async (req: Request, res: Response) => {
     const { city } = req.params;
     let finalWeatherData: WeatherData;
 
-    if (city === 'London') {
-      finalWeatherData = generateLondonWeatherData();
+    if (city === 'london') {
+      finalWeatherData = generatelondonWeatherData();
     } else if (city === 'Dublin') {
       finalWeatherData = generateDublinWeatherData();
     } else {

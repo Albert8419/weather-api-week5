@@ -1,5 +1,5 @@
 import { __awaiter } from "tslib";
-import { generateDublinWeatherData, generateLondonWeatherData } from '../services/weatherService.js';
+import { generateDublinWeatherData, generatelondonWeatherData } from '../services/weatherService.js';
 import { validationResult } from 'express-validator';
 export const getWeatherData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const errors = validationResult(req);
@@ -10,8 +10,8 @@ export const getWeatherData = (req, res) => __awaiter(void 0, void 0, void 0, fu
     try {
         const { city } = req.params;
         let finalWeatherData;
-        if (city === 'London') {
-            finalWeatherData = generateLondonWeatherData();
+        if (city === 'london') {
+            finalWeatherData = generatelondonWeatherData();
         }
         else if (city === 'Dublin') {
             finalWeatherData = generateDublinWeatherData();
