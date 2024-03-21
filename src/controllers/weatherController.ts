@@ -13,9 +13,9 @@ export const getWeatherData = async (req: Request, res: Response) => {
     const { city } = req.params;
     let finalWeatherData: WeatherData;
 
-    if (city === 'london') {
+    if (city === 'London') {
       finalWeatherData = generateLondonWeatherData();
-    } else if (city === 'dublin') {
+    } else if (city === 'Dublin') {
       finalWeatherData = generateDublinWeatherData();
     } else {
       return res.status(400).send('Invalid city');

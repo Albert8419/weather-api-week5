@@ -1,5 +1,6 @@
 import faker from 'faker'; // Correct import statement
 
+
 export const generateLondonWeatherData = (): WeatherData => {
   const generatedWeatherData: WeatherData = {
     city: 'London',
