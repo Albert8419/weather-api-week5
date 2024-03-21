@@ -10,10 +10,10 @@ export const getWeatherData = (req, res) => __awaiter(void 0, void 0, void 0, fu
     try {
         const { city } = req.params;
         let finalWeatherData;
-        if (city === 'london') {
+        if (city === 'London') {
             finalWeatherData = generateLondonWeatherData();
         }
-        else if (city === 'dublin') {
+        else if (city === 'Dublin') {
             finalWeatherData = generateDublinWeatherData();
         }
         else {
