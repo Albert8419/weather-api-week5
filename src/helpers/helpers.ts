@@ -1,5 +1,5 @@
 import algosdk from 'algosdk';
-import { getClient, getAccount } from '../config/config'; // Remove .js extension if you are using TypeScript
+import { getClient, getAccount } from '../config/config.js'; // Remove .js extension if you are using TypeScript
 
 // TypeScript interface for weather data
 interface WeatherData {
@@ -39,6 +39,6 @@ export const storeWeatherData = async (data: WeatherData): Promise<void> => {
         console.log('Transaction ID:', sendTxn.txId);
     } catch (error) {
         // Log the error stack for detailed debug information
-        console.error('Failed to store weather data:', error.stack);
+        console.error('Failed to store weather data:', (error as Error).stack);
     }
 };
