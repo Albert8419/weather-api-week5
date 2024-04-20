@@ -1,6 +1,6 @@
 import { __awaiter } from "tslib";
 import algosdk from 'algosdk';
-import { getClient, getAccount } from '../config/config'; // Remove .js extension if you are using TypeScript
+import { getClient, getAccount } from '../config/config.js'; // Remove .js extension if you are using TypeScript
 export const storeWeatherData = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const client = getClient(); // Ensure this function retrieves an Algorand client instance

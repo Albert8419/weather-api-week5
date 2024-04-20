@@ -1,6 +1,7 @@
+// In weatherController.ts
 import { Request, Response } from 'express';
-import { generateDublinWeatherData, generatelondonWeatherData } from '../services/weatherService.js';
 import { validationResult } from 'express-validator';
+import { generateDublinWeatherData, generateLondonWeatherData } from '../services/weatherService.js';
 
 export const getWeatherData = async (req: Request, res: Response) => {
   const errors = validationResult(req);
@@ -11,12 +12,12 @@ export const getWeatherData = async (req: Request, res: Response) => {
 
   try {
     const { city } = req.params;
-    let finalWeatherData: WeatherData;
+    let finalWeatherData: WeatherData; // No import necessary, WeatherData is globally available
 
-    if (city === 'london') {
-      finalWeatherData = generatelondonWeatherData();
-    } else if (city === 'Dublin') {
-      finalWeatherData = generateDublinWeatherData();
+    if (city.toLowerCase() === 'london') {
+      finalWeatherData = await generateLondonWeatherData();
+    } else if (city.toLowerCase() === 'dublin') {
+      finalWeatherData = await generateDublinWeatherData();
     } else {
       return res.status(400).send('Invalid city');
     }
