@@ -1,8 +1,8 @@
 import { param } from 'express-validator';
-export const validateCityName = param('city')
-    .isString()
-    .trim()
-    .toLowerCase() // Convert the city name to lowercase for case-insensitive comparison
-    .isIn(['london', 'Dublin'])
-    .withMessage('City name must be either "london" or "Dublin"');
-//# sourceMappingURL=validators.js.map
+
+export const validateCity = param('city').custom((value) => {
+  // Normalize the incoming city value to lower case
+  const normalizedCity = value.toLowerCase();
+  // Check against normalized city names
+  return ['london', 'dublin'].includes(normalizedCity);
+}).withMessage('City name must be "London" or "Dublin" in any case variation');
