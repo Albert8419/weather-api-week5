@@ -1,6 +1,6 @@
 import { __awaiter } from "tslib";
-import { generateDublinWeatherData, generatelondonWeatherData } from '../services/weatherService.js';
 import { validationResult } from 'express-validator';
+import { generateDublinWeatherData, generateLondonWeatherData } from '../services/weatherService.js';
 export const getWeatherData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -10,11 +10,12 @@ export const getWeatherData = (req, res) => __awaiter(void 0, void 0, void 0, fu
     try {
         const { city } = req.params;
         let finalWeatherData;
-        if (city === 'london') {
-            finalWeatherData = generatelondonWeatherData();
+        const cityLower = city.toLowerCase(); // Convert city to lower case
+        if (cityLower === 'london') {
+            finalWeatherData = yield generateLondonWeatherData();
         }
-        else if (city === 'Dublin') {
-            finalWeatherData = generateDublinWeatherData();
+        else if (cityLower === 'dublin') {
+            finalWeatherData = yield generateDublinWeatherData();
         }
         else {
             return res.status(400).send('Invalid city');

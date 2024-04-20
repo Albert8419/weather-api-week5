@@ -12,11 +12,13 @@ export const getWeatherData = async (req: Request, res: Response) => {
 
   try {
     const { city } = req.params;
-    let finalWeatherData: WeatherData; // No import necessary, WeatherData is globally available
+    let finalWeatherData: WeatherData;
 
-    if (city.toLowerCase() === 'london') {
+    const cityLower = city.toLowerCase(); // Convert city to lower case
+
+    if (cityLower === 'london') {
       finalWeatherData = await generateLondonWeatherData();
-    } else if (city.toLowerCase() === 'dublin') {
+    } else if (cityLower === 'dublin') {
       finalWeatherData = await generateDublinWeatherData();
     } else {
       return res.status(400).send('Invalid city');

@@ -1,7 +1,10 @@
 import express from 'express';
-import { getWeatherData } from '../controllers/weatherController.js';
-import { validateCityName } from '../middleware/validators.js';
+import { getWeatherData } from './controllers/weatherController';
+import { validateCity } from './validators';
+
 const router = express.Router();
-router.get('/:city', validateCityName, getWeatherData);
+
+// Applying the validateCity middleware to the route that needs city validation
+router.get('/weather/:city', validateCity, getWeatherData);
+
 export default router;
-//# sourceMappingURL=weatherRoutes.js.map
