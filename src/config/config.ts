@@ -2,7 +2,7 @@ import algosdk from "algosdk";
 
 // Assuming you're using a sandbox or private network, this token may be fine.
 // For a public Algorand network, you would need a valid token.
-const algodToken = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+const algodToken = "a".repeat(64);
 
 // This should be the address of your Algorand node.
 // If you're using the Algorand sandbox, localhost is correct, but the port should be 4001.
