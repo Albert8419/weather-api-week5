@@ -1,6 +1,6 @@
 import { param } from 'express-validator';
 
-export const validateCity = param('city').custom((value) => {
+export const validateCityName = param('city').custom((value) => {
   // Normalize the incoming city value to lower case
   const normalizedCity = value.toLowerCase();
   // Check against normalized city names
