@@ -11,7 +11,7 @@ const port = 4001; // Algorand's default port is 4001 for the algod process.
 
 // Your mnemonic to restore the account.
 // Ensure you protect this and don't expose it in your code in a production environment.
-const mnemonic = "ix insane term problem depth indicate luggage youth add enable happy struggle zoo main clutch tobacco swear one mirror mansion chaos exercise service abandon cherry";
+const mnemonic = "fix insane term problem depth indicate luggage youth add enable happy struggle zoo main clutch tobacco swear one mirror mansion chaos exercise service abandon cherry";
 
 // Initialize Algorand client
 export function getClient(): algosdk.Algodv2 {
