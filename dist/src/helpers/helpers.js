@@ -1,13 +1,13 @@
 import { __awaiter } from "tslib";
 import algosdk from "algosdk";
 import { getClient, getAccount } from "../config/config.js";
-export const storeWeatherData = (data) => __awaiter(void 0, void 0, void 0, function* () {
+export const storeGasPriceData = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const client = getClient();
         const account = getAccount();
         const suggestedParams = yield client.getTransactionParams().do();
         const enc = new TextEncoder();
-        const note = enc.encode(JSON.stringify(data)); // Encoding the weather data as a string in the transaction note
+        const note = enc.encode(JSON.stringify(data)); // Encoding the gas price data as a string in the transaction note
         let txn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
             from: account.addr,
             to: account.addr, // Sending the transaction to oneself
@@ -20,7 +20,7 @@ export const storeWeatherData = (data) => __awaiter(void 0, void 0, void 0, func
         console.log("Transaction successful with ID: ", sendTxn.txId);
     }
     catch (error) {
-        console.error("Failed to store weather data:", error);
+        console.error("Failed to store gas price data:", error);
     }
 });
 //# sourceMappingURL=helpers.js.map

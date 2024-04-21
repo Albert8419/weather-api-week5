@@ -1,15 +1,17 @@
 import express from 'express';
-import cors from 'cors'; // Moved the cors import statement here
+import cors from 'cors';
 
-import weatherRoute from './routes/weatherRoutes.js';
+// Assuming the gas prices route handler file is correctly named and located
+import gasPricesRoutes from './routes/gasPricesRoutes.js';
 
 const app = express();
 const PORT = 3000;
 
-app.use(cors()); // Now the cors middleware is initialized before any other middleware
+app.use(cors()); // Enabling CORS for all requests
+app.use(express.json()); // Middleware to parse JSON bodies
 
-app.use(express.json());
-app.use('/api/weather', weatherRoute);
+// Update the route to use the gas prices routes handler
+app.use('/api/gas-prices', gasPricesRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
