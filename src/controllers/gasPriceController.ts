@@ -10,11 +10,16 @@ export const getGasPrices = async (req: Request, res: Response) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const city = req.params.city; // Extract city from request parameters
-    const gasPrices = await fetchGasPrices(city); // Pass city to fetchGasPrices
+    const city = req.params.city;
+    if (!city) {
+      return res.status(400).json({ error: 'City parameter is missing' });
+    }
+
+    const gasPrices = await fetchGasPrices(city);
     return res.status(200).json({ gasPrices });
   } catch (error) {
     console.error('Error fetching gas prices:', error);
     return res.status(500).send('Error fetching gas prices');
   }
 };
+

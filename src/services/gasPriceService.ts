@@ -1,4 +1,3 @@
-// In gasPricesService.ts
 import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -6,7 +5,13 @@ dotenv.config();
 const API_KEY = process.env.COLLECTAPI_KEY; // Ensure you set this in your .env file
 const API_URL = 'https://api.collectapi.com/gasPrice/gas-prices-api'; // Updated API URL
 
-export const fetchGasPrices = async (city: string) => { // Modify function to accept city parameter
+/**
+ * Fetches gas prices for the specified city from the API.
+ * @param city The city for which to fetch gas prices.
+ * @returns An object containing gas prices for different fuel types.
+ * @throws Error if fetching gas prices fails.
+ */
+export const fetchGasPrices = async (city: string) => {
     try {
         const response = await axios.get(API_URL, {
             headers: {
