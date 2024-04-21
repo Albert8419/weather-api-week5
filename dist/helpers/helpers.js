@@ -21,6 +21,7 @@ const storeGasPriceData = (data) => tslib_1.__awaiter(void 0, void 0, void 0, fu
         const signedTxn = txn.signTxn(account.sk);
         let sendTxn = yield client.sendRawTransaction(signedTxn).do();
         console.log("Transaction successful with ID: ", sendTxn.txId);
+        // Additional logic to wait for transaction confirmation if needed
     }
     catch (error) {
         console.error("Failed to store gas price data:", error);

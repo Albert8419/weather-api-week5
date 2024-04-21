@@ -3,11 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAccount = exports.getClient = void 0;
 const tslib_1 = require("tslib");
 const algosdk_1 = tslib_1.__importDefault(require("algosdk"));
-// Placeholder values - replace with actual production values
-const algodToken = process.env.ALGORAND_TOKEN || ""; // Retrieve token from environment variable
-const server = process.env.ALGORAND_SERVER || "http://localhost"; // Retrieve server address from environment variable
-const port = parseInt(process.env.ALGORAND_PORT || "4001"); // Retrieve port from environment variable
-// Placeholder mnemonic - replace with actual production mnemonic retrieved securely
+// Retrieve token, server address, port, and mnemonic from environment variables
+const algodToken = process.env.ALGORAND_TOKEN || ""; // Replace "" with the actual environment variable name
+const server = process.env.ALGORAND_SERVER || "http://localhost"; // Replace "http://localhost" with the actual server address environment variable
+const port = parseInt(process.env.ALGORAND_PORT || "4001"); // Replace "4001" with the actual port environment variable
 const mnemonic = process.env.ALGORAND_MNEMONIC || "pigeon essence guitar sea spawn sheriff hold solid vote quote oblige hurdle entire senior situate pond boy pledge ladder weekend glare project nice abandon napkin";
 // Initialize Algorand client
 function getClient() {
