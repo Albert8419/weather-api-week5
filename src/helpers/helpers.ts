@@ -3,6 +3,7 @@ import { getClient, getAccount } from "../config/config.js";
 
 // Assuming GasPriceData is defined as mentioned previously
 interface GasPriceData {
+  city: StringConstructor;  
   regular: number;
   midGrade: number;
   premium: number;
