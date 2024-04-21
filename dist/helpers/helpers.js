@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.storeAqiWidgetData = exports.getAccount = exports.getClient = void 0;
+exports.storeAQIWidgetData = exports.getAccount = exports.getClient = void 0;
 const algosdk_1 = __importDefault(require("algosdk"));
 const algosdk_2 = require("algosdk");
 const util_1 = require("util");
@@ -33,7 +33,7 @@ function getAccount() {
 exports.getAccount = getAccount;
 // Retrieve minimum transaction amount from environment variables or set default
 const MIN_TRANSACTION_AMOUNT = parseInt(process.env.ALGORAND_MIN_TRANSACTION_AMOUNT || '1000');
-const storeAqiWidgetData = (data) => __awaiter(void 0, void 0, void 0, function* () {
+const storeAQIWidgetData = (data) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const client = getClient();
         const account = getAccount();
@@ -57,4 +57,4 @@ const storeAqiWidgetData = (data) => __awaiter(void 0, void 0, void 0, function*
         throw error; // Propagate the error to the caller
     }
 });
-exports.storeAqiWidgetData = storeAqiWidgetData;
+exports.storeAQIWidgetData = storeAQIWidgetData;

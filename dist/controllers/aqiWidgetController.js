@@ -17,8 +17,9 @@ const getAqiWidgetData = (req, res) => __awaiter(void 0, void 0, void 0, functio
         if (!city) {
             return res.status(400).json({ error: 'City parameter is missing' });
         }
+        const language = req.query.lang || 'en'; // Get language from query parameter or default to English
         const axiosInstance = (0, config_js_1.getAqiWidgetAxiosClient)(); // Use the Axios instance configured for AQI widget API.
-        const response = yield axiosInstance.get(`/feed/${city}/en/feed.v1.js`);
+        const response = yield axiosInstance.get(`/feed/${city}/${language}/feed.v1.js`);
         const aqiWidgetData = response.data;
         return res.status(200).send(aqiWidgetData);
     }

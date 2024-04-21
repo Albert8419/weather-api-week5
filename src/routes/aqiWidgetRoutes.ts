@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { getAqiWidgetData } from '../controllers/aqiWidgetController';
-import { validateCity } from '../middleware/validators';
+import { validateCity } from '../middleware/validators.js';
 
 const router = express.Router();
 
@@ -12,7 +12,7 @@ router.get('/aqi-widget/:city', validateCity, async (req: Request, res: Response
         }
 
         // Call the controller function to get the response
-        const aqiWidgetResponse = await getAqiWidgetData(city);
+        const aqiWidgetResponse = await getAqiWidgetData(req, res, city);
 
         if (aqiWidgetResponse) {
             return res.status(200).json(aqiWidgetResponse);

@@ -16,8 +16,8 @@ exports.fetchAqiWidgetData = void 0;
 const axios_1 = __importDefault(require("axios"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const AQI_WIDGET_API_KEY = process.env.AQI_WIDGET_API_KEY; // Changed to a more specific environment variable name
-const API_URL = 'https://feed.aqicn.org/feed'; // Ensure this is the correct endpoint
+const AQI_WIDGET_API_KEY = process.env.AQI_WIDGET_API_KEY;
+const API_URL = 'https://feed.aqicn.org/feed';
 const fetchAqiWidgetData = (city) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield axios_1.default.get(`${API_URL}/${city}/en/feed.v1.js`, {
@@ -31,10 +31,9 @@ const fetchAqiWidgetData = (city) => __awaiter(void 0, void 0, void 0, function*
     }
     catch (error) {
         console.error('Failed to fetch AQI widget data:', error);
-        // Check if the error is an AxiosError
+        // Handle Axios errors
         if (axios_1.default.isAxiosError(error)) {
             const axiosError = error;
-            // Log detailed information about the Axios error
             if (axiosError.response) {
                 console.error('API response error:', axiosError.response.status, axiosError.response.data);
             }
@@ -46,10 +45,9 @@ const fetchAqiWidgetData = (city) => __awaiter(void 0, void 0, void 0, function*
             }
         }
         else {
-            // Handle or log other types of errors appropriately
             console.error('An unexpected error occurred');
         }
-        throw error; // Propagate the error to the caller
+        throw new Error('Failed to fetch AQI widget data'); // Propagate the error to the caller with a descriptive message
     }
 });
 exports.fetchAqiWidgetData = fetchAqiWidgetData;

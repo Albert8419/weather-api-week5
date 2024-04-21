@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { getAqiWidgetAxiosClient } from '../config/config.js'; // Correct relative path
 
-export const getAqiWidgetData = async (req: Request, res: Response) => {
+export const getAqiWidgetData = async (req: Request, res: Response, city: string) => {
     try {
         const city = req.params.city;
         if (!city) {
