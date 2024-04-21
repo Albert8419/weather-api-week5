@@ -1,4 +1,3 @@
-import axios from 'axios';
 import algosdk from 'algosdk';
 import { Algodv2 } from 'algosdk';
 import { mnemonicToSecretKey } from 'algosdk';
@@ -31,7 +30,7 @@ interface AQIWidgetData {
   timestamp?: Date;
 }
 
-export const storeAqiWidgetData = async (data: AQIWidgetData): Promise<void> => {
+export const storeAQIWidgetData = async (data: AQIWidgetData): Promise<void> => {
   try {
     const client = getClient();
     const account = getAccount();

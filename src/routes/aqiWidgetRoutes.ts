@@ -1,32 +1,21 @@
-import express from 'express';
-import { getAqiWidgetData } from '../controllers/aqiWidgetController'; // Correct relative path
-import { validateCity } from '../middleware/validators'; // Correct relative path
-import axios from 'axios';
+import express, { Request, Response } from 'express';
+import { getAqiWidgetData } from '../controllers/aqiWidgetController';
+import { validateCity } from '../middleware/validators';
 
 const router = express.Router();
-const WAQI_API_TOKEN = 'e1e26600861c3e38c921da095baad05c07d509cd'; // Your WAQI API token
 
-// Route to fetch air quality data for a specific city from the local API
-router.get('/aqi-widget/:city', validateCity, getAqiWidgetData);
-
-// Route to fetch air quality data for a specific city from the WAQI API
-router.get('/aqi-widget-data/:city', async (req, res) => {
+router.get('/aqi-widget/:city', validateCity, async (req: Request, res: Response) => {
     try {
-        const city = req.params.city;
-        const url = `https://api.waqi.info/feed/${city}/?token=${WAQI_API_TOKEN}`;
-        const response = await axios.get(url);
-        
-        // Extract air quality data from the response
-        const { status, data } = response;
-        if (status === 200 && data && data.data && data.data.aqi) {
-            const aqi = data.data.aqi;
-            const details = data.data.iaqi;
-            const aqiData = {
-                city,
-                aqi,
-                details
-            };
-            return res.status(200).json(aqiData);
+        const city = req.params?.city;
+        if (!city) {
+            return res.status(400).json({ error: 'City parameter is missing' });
+        }
+
+        // Call the controller function to get the response
+        const aqiWidgetResponse = await getAqiWidgetData(city);
+
+        if (aqiWidgetResponse) {
+            return res.status(200).json(aqiWidgetResponse);
         } else {
             return res.status(404).json({ error: 'Air quality data not found' });
         }
