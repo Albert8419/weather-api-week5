@@ -8,7 +8,7 @@ const algodToken = process.env.ALGORAND_TOKEN || ""; // Retrieve token from envi
 const server = process.env.ALGORAND_SERVER || "http://localhost"; // Retrieve server address from environment variable
 const port = parseInt(process.env.ALGORAND_PORT || "4001"); // Retrieve port from environment variable
 // Placeholder mnemonic - replace with actual production mnemonic retrieved securely
-const mnemonic = process.env.ALGORAND_MNEMONIC || "";
+const mnemonic = process.env.ALGORAND_MNEMONIC || "pigeon essence guitar sea spawn sheriff hold solid vote quote oblige hurdle entire senior situate pond boy pledge ladder weekend glare project nice abandon napkin";
 // Initialize Algorand client
 function getClient() {
     return new algosdk_1.default.Algodv2(algodToken, server, port);

@@ -3,11 +3,11 @@ import { getClient, getAccount } from "../config/config.js";
 
 // Assuming GasPriceData is defined as mentioned previously
 interface GasPriceData {
-  city: string;  
-  regular: number;
-  midGrade: number;
-  premium: number;
-  diesel: number;
+    city: string;  
+    regular: number;
+    midGrade: number;
+    premium: number;
+    diesel: number;
 }
 
 export const storeGasPriceData = async (data: GasPriceData): Promise<void> => {
@@ -31,6 +31,8 @@ export const storeGasPriceData = async (data: GasPriceData): Promise<void> => {
         let sendTxn = await client.sendRawTransaction(signedTxn).do();
 
         console.log("Transaction successful with ID: ", sendTxn.txId);
+
+        // Additional logic to wait for transaction confirmation if needed
     } catch (error) {
         console.error("Failed to store gas price data:", error);
         throw error; // Rethrow the error to propagate it to the caller
