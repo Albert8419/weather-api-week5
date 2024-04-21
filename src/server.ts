@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import gasPricesRoutes from './routes/gasPricesRoutes.js';
+import aqiWidgetRoutes from './routes/aqiWidgetRoutes'; // Updated import path
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,8 +12,8 @@ app.use(helmet()); // Helps secure your Express apps by setting various HTTP hea
 app.use(morgan('combined')); // Log HTTP requests
 app.use(express.json()); // Built-in middleware for parsing JSON
 
-// Define the route to handle GET requests for gas prices
-app.use('/api/v1/gas-prices', gasPricesRoutes);
+// Define the route to handle GET requests for AQI widget data
+app.use('/api/v1/aqi-widget', aqiWidgetRoutes);
 
 // Global error handling middleware
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

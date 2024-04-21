@@ -1,13 +1,10 @@
-// global.d.ts in the types folder
-
 /**
- * Represents the various categories of gas prices.
+ * Represents the data structure for Air Quality Index (AQI) widget data.
  */
-interface GasPriceData {
+interface AqiWidgetData {
   city?: string;         // Optional: Name of the city for which the data applies
-  regular: number;       // Regular gas price
-  midGrade: number;      // Mid-grade gas price
-  premium: number;       // Premium gas price
-  diesel: number;        // Diesel price
+  aqi: number;           // Air Quality Index (AQI) value
+  details: string;       // Additional details about the AQI
+  // Add more properties as needed
   timestamp?: Date;      // Optional: Timestamp when the data was retrieved
 }

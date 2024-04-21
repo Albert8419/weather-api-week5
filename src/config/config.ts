@@ -1,33 +1,28 @@
-import algosdk from 'algosdk';
 import axios from 'axios';
 
-// Algorand configurations
-const algodToken = process.env.ALGORAND_TOKEN || '';
-const server = process.env.ALGORAND_SERVER || 'http://localhost';
-const port = parseInt(process.env.ALGORAND_PORT || '4001');
-const mnemonic = process.env.ALGORAND_MNEMONIC || '';
+// Air Quality Index (AQI) Widget API configurations
+const aqiWidgetCity = 'beijing'; // Change this to the desired city
+const aqiWidgetLang = 'en'; // Change this to the desired language
+const aqiWidgetContainerId = 'city-aqi-container'; // Change this to the desired container ID
 
-// Initialize Algorand client
-export function getClient(): algosdk.Algodv2 {
-  return new algosdk.Algodv2(algodToken, server, port);
-}
-
-// Convert the mnemonic to an account object
-export function getAccount(): algosdk.Account {
-  return algosdk.mnemonicToSecretKey(mnemonic);
-}
-
-// Gas Prices API configurations
-const gasApiToken = process.env.GAS_API_TOKEN || ''; // Add this to your environment variables
-const gasApiHost = 'gas-price.p.rapidapi.com';
-
-// Initialize Axios client for Gasoline Prices API
-export const getGasApiAxiosClient = () => {
+// Initialize AQI Widget client
+export const getAqiWidgetAxiosClient = () => {
   return axios.create({
-    baseURL: `https://${gasApiHost}`,
-    headers: {
-      'X-RapidAPI-Key': gasApiToken,
-      'X-RapidAPI-Host': gasApiHost,
-    },
+    baseURL: 'https://feed.aqicn.org',
   });
+}
+
+// Initialize and render AQI Widget
+export function renderAqiWidget() {
+  getAqiWidgetAxiosClient().get(`/feed/${aqiWidgetCity}/${aqiWidgetLang}/feed.v1.js`)
+    .then(response => {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.charset = 'utf-8';
+      script.innerHTML = response.data;
+      document.getElementById(aqiWidgetContainerId)?.appendChild(script);
+    })
+    .catch(error => {
+      console.error('Error loading AQI Widget:', error);
+    });
 }

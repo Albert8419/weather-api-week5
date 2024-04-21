@@ -1,7 +1,7 @@
 {
   "name": "your-project-name",
   "version": "1.0.0",
-  "description": "A brief description of your project",
+  "description": "An application for fetching Air Quality Index (AQI) widget data.",
   "main": "dist/server.js", 
   "scripts": {
     "start": "node dist/server.js",  
@@ -17,7 +17,6 @@
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
-    "algosdk": "^2.7.0",
     "axios": "^1.6.8",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
