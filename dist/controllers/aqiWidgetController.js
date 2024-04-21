@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAqiWidgetData = void 0;
 const config_js_1 = require("../config/config.js"); // Correct relative path
-const getAqiWidgetData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getAqiWidgetData = (req, res, city) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const city = req.params.city;
         if (!city) {

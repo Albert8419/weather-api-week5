@@ -24,7 +24,7 @@ router.get('/aqi-widget/:city', validators_js_1.validateCity, (req, res) => __aw
             return res.status(400).json({ error: 'City parameter is missing' });
         }
         // Call the controller function to get the response
-        const aqiWidgetResponse = yield (0, aqiWidgetController_1.getAqiWidgetData)(city);
+        const aqiWidgetResponse = yield (0, aqiWidgetController_1.getAqiWidgetData)(req, res, city);
         if (aqiWidgetResponse) {
             return res.status(200).json(aqiWidgetResponse);
         }
