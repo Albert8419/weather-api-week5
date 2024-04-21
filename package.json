@@ -22,7 +22,7 @@
   },
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
-    "start": "node dist/src/server.js",
+    "start": "node dist/server.js",
     "dev": "nodemon dist/src/server.js",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -w -p tsconfig.json",
