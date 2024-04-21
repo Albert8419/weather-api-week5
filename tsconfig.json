@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2016",
-    "lib": ["es2021", "DOM"],
+    "lib": ["es2016", "DOM"], // Aligned with the target to match supported features
     "module": "CommonJS",
     "moduleResolution": "Node",
     "esModuleInterop": true,
@@ -16,15 +16,15 @@
     "sourceMap": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "noImplicitAny": true, // Enabled for consistent strict mode
-    "noImplicitThis": true, // Enabled for consistent strict mode
-    "strictNullChecks": true, // Enabled for consistent strict mode
-    "baseUrl": ".",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "baseUrl": ".", // Base URL for non-relative module imports
     "paths": {
       "*": ["src/*", "node_modules/*"]
     },
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist"] // Excluding output directory and node_modules from compilation process
 }

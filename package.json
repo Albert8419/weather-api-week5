@@ -2,13 +2,13 @@
   "name": "your-project-name",
   "version": "1.0.0",
   "description": "A brief description of your project",
-  "main": "dist/app.js",
+  "main": "dist/server.js", 
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node dist/server.js",  
     "build": "tsc",
     "watch": "tsc -w",
-    "dev": "nodemon dist/app.js",
-    "lint": "eslint src --ext .ts"
+    "dev": "nodemon dist/server.js",  
+    "lint": "eslint src --ext .ts, .js"
   },
   "repository": {
     "type": "git",

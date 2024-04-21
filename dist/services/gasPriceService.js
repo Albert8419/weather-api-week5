@@ -21,9 +21,15 @@ const fetchGasPrices = (city) => tslib_1.__awaiter(void 0, void 0, void 0, funct
     }
     catch (error) {
         console.error('Failed to fetch gas prices:', error);
-        if (error.response) {
-            // Handle HTTP-specific errors here
-            console.error('API response error:', error.response.status, error.response.data);
+        if (axios_1.default.isAxiosError(error)) {
+            // Now we can safely access error.response because we've asserted the error is an AxiosError
+            if (error.response) {
+                console.error('API response error:', error.response.status, error.response.data);
+            }
+        }
+        else {
+            // Error is not from Axios, handle or log appropriately
+            console.error('An unexpected error occurred');
         }
         throw error; // Consider custom error handling or reformatting error messages
     }
