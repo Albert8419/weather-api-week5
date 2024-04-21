@@ -1,14 +1,17 @@
-import { __awaiter } from "tslib";
-import algosdk from "algosdk";
-import { getClient, getAccount } from "../config/config.js";
-export const storeGasPriceData = (data) => __awaiter(void 0, void 0, void 0, function* () {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.storeGasPriceData = void 0;
+const tslib_1 = require("tslib");
+const algosdk_1 = tslib_1.__importDefault(require("algosdk"));
+const config_js_1 = require("../config/config.js");
+const storeGasPriceData = async (data) => {
     try {
-        const client = getClient();
-        const account = getAccount();
-        const suggestedParams = yield client.getTransactionParams().do();
+        const client = (0, config_js_1.getClient)();
+        const account = (0, config_js_1.getAccount)();
+        const suggestedParams = await client.getTransactionParams().do();
         const enc = new TextEncoder();
         const note = enc.encode(JSON.stringify(data)); // Encoding the gas price data as a string in the transaction note
-        let txn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+        let txn = algosdk_1.default.makePaymentTxnWithSuggestedParamsFromObject({
             from: account.addr,
             to: account.addr, // Sending the transaction to oneself
             amount: 1000, // Minimum amount to facilitate the transaction
@@ -16,11 +19,12 @@ export const storeGasPriceData = (data) => __awaiter(void 0, void 0, void 0, fun
             suggestedParams: suggestedParams,
         });
         const signedTxn = txn.signTxn(account.sk);
-        let sendTxn = yield client.sendRawTransaction(signedTxn).do();
+        let sendTxn = await client.sendRawTransaction(signedTxn).do();
         console.log("Transaction successful with ID: ", sendTxn.txId);
     }
     catch (error) {
         console.error("Failed to store gas price data:", error);
     }
-});
+};
+exports.storeGasPriceData = storeGasPriceData;
 //# sourceMappingURL=helpers.js.map

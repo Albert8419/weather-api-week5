@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2016",
+    "target": "es2019",
     "lib": ["es2021", "DOM"],
-    "module": "NodeNext", // Set module type to NodeNext
-    "moduleResolution": "NodeNext", // This should also be NodeNext
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -18,9 +18,9 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitAny": false,
-    "noImplicitThis": false,
-    "strictNullChecks": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
       "*": ["src/*", "node_modules/*"]
