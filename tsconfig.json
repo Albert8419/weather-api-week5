@@ -1,32 +1,38 @@
 {
   "compilerOptions": {
-  "target": "es2016",
-  "lib": [
-  "es2021",
-  "DOM"
-  ],
-  "module": "Node16",
-  "esModuleInterop": true,
-  "forceConsistentCasingInFileNames": true,
-  "strict": true,
-  "skipLibCheck": true,
-  "moduleResolution": "Node16",
-  "rootDir": ".",
-  "outDir": "dist",
-  "allowSyntheticDefaultImports": true,
-  "importHelpers": true,
-  "alwaysStrict": true,
-  "sourceMap": true,
-  "noFallthroughCasesInSwitch": true,
-  "noImplicitReturns": true,
-  "noUnusedLocals": true,
-  "noUnusedParameters": true,
-  "noImplicitAny": false,
-  "noImplicitThis": false,
-  "strictNullChecks": false,
-  "typeRoots": [
-  "./node_modules/@types",
-  "./src/types"
-  ]
-  }
-  }
+    "target": "es2016",  // Appropriate for Node.js compatibility
+    "lib": [
+      "es2021",
+      "DOM"
+    ],
+    "module": "commonjs",  // CommonJS is suitable for Node.js
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",  // Use 'node' for Node.js
+    "rootDir": "src",  // Source files are in 'src' directory
+    "outDir": "dist",  // Compiled files go into 'dist' directory
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "alwaysStrict": true,
+    "sourceMap": true,  // Enable source maps for debugging
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "strictNullChecks": false,
+    "baseUrl": ".",  // Base URL for resolving non-relative module names
+    "paths": {
+      "*": ["src/*", "node_modules/*"]  // Helps in resolving modules
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ]
+  },
+  "include": ["src/**/*"],  // Include all files within the 'src' directory
+  "exclude": ["node_modules", "dist"]  // Exclude 'node_modules' and 'dist' from the compilation process
+}

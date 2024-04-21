@@ -6,7 +6,7 @@ dotenv.config();
 const API_KEY = process.env.COLLECTAPI_KEY; // Ensure you set this in your .env file
 const API_URL = 'https://api.collectapi.com/gasPrice/nationalAverage';
 
-export const fetchGasPrices = async (): Promise<GasPriceData> => {
+export const fetchGasPrices = async () => {
     try {
         const response = await axios.get(API_URL, {
             headers: {

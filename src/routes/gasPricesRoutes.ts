@@ -1,6 +1,6 @@
 import express from 'express';
 import { getGasPrices } from '../controllers/gasPriceController.js';
-import { validateApiKey, validateParameter } from '../validators';
+import { validateApiKey, validateParameter } from '../middleware/validators';
 
 const router = express.Router();
 
