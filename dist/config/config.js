@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAccount = exports.getClient = void 0;
+exports.getGasApiAxiosClient = exports.getAccount = exports.getClient = void 0;
 const tslib_1 = require("tslib");
 const algosdk_1 = tslib_1.__importDefault(require("algosdk"));
-// Retrieve token, server address, port, and mnemonic from environment variables
-const algodToken = process.env.ALGORAND_TOKEN || ""; // Replace "" with the actual environment variable name
-const server = process.env.ALGORAND_SERVER || "http://localhost"; // Replace "http://localhost" with the actual server address environment variable
-const port = parseInt(process.env.ALGORAND_PORT || "4001"); // Replace "4001" with the actual port environment variable
-const mnemonic = process.env.ALGORAND_MNEMONIC || "pigeon essence guitar sea spawn sheriff hold solid vote quote oblige hurdle entire senior situate pond boy pledge ladder weekend glare project nice abandon napkin";
+const axios_1 = tslib_1.__importDefault(require("axios"));
+// Algorand configurations
+const algodToken = process.env.ALGORAND_TOKEN || '';
+const server = process.env.ALGORAND_SERVER || 'http://localhost';
+const port = parseInt(process.env.ALGORAND_PORT || '4001');
+const mnemonic = process.env.ALGORAND_MNEMONIC || '';
 // Initialize Algorand client
 function getClient() {
     return new algosdk_1.default.Algodv2(algodToken, server, port);
@@ -18,4 +19,18 @@ function getAccount() {
     return algosdk_1.default.mnemonicToSecretKey(mnemonic);
 }
 exports.getAccount = getAccount;
+// Gas Prices API configurations
+const gasApiToken = process.env.GAS_API_TOKEN || ''; // Add this to your environment variables
+const gasApiHost = 'gas-price.p.rapidapi.com';
+// Initialize Axios client for Gasoline Prices API
+function getGasApiAxiosClient() {
+    return axios_1.default.create({
+        baseURL: `https://${gasApiHost}`,
+        headers: {
+            'X-RapidAPI-Key': gasApiToken,
+            'X-RapidAPI-Host': gasApiHost,
+        },
+    });
+}
+exports.getGasApiAxiosClient = getGasApiAxiosClient;
 //# sourceMappingURL=config.js.map

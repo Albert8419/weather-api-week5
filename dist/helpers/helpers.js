@@ -4,6 +4,8 @@ exports.storeGasPriceData = void 0;
 const tslib_1 = require("tslib");
 const algosdk_1 = tslib_1.__importDefault(require("algosdk"));
 const config_js_1 = require("../config/config.js");
+// Retrieve minimum transaction amount from environment variables or set default
+const MIN_TRANSACTION_AMOUNT = parseInt(process.env.ALGORAND_MIN_TRANSACTION_AMOUNT || "1000");
 const storeGasPriceData = (data) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     try {
         const client = (0, config_js_1.getClient)();
@@ -13,8 +15,8 @@ const storeGasPriceData = (data) => tslib_1.__awaiter(void 0, void 0, void 0, fu
         const note = enc.encode(JSON.stringify(data)); // Encoding the gas price data as a string in the transaction note
         let txn = algosdk_1.default.makePaymentTxnWithSuggestedParamsFromObject({
             from: account.addr,
-            to: account.addr, // Sending the transaction to oneself
-            amount: 1000, // Minimum amount to facilitate the transaction (consider making it configurable)
+            to: account.addr, // Ensure this is the correct recipient. If it's a data record, this is fine.
+            amount: MIN_TRANSACTION_AMOUNT, // Using the configurable minimum transaction amount
             note: note,
             suggestedParams: suggestedParams,
         });
@@ -25,7 +27,7 @@ const storeGasPriceData = (data) => tslib_1.__awaiter(void 0, void 0, void 0, fu
     }
     catch (error) {
         console.error("Failed to store gas price data:", error);
-        throw error; // Rethrow the error to propagate it to the caller
+        throw error; // Propagate the error to the caller
     }
 });
 exports.storeGasPriceData = storeGasPriceData;

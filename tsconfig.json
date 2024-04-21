@@ -2,11 +2,11 @@
   "compilerOptions": {
     "target": "es2016",
     "lib": ["es2021", "DOM"],
-    "module": "CommonJS", // Change module to CommonJS
-    "moduleResolution": "Node", // Change moduleResolution to Node
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": true,  // This enables all strict type-checking options
     "skipLibCheck": true,
     "rootDir": "src",
     "outDir": "dist",
@@ -16,11 +16,9 @@
     "sourceMap": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitAny": false,
-    "noImplicitThis": false,
-    "strictNullChecks": false,
+    "noImplicitAny": true, // Enabled for consistent strict mode
+    "noImplicitThis": true, // Enabled for consistent strict mode
+    "strictNullChecks": true, // Enabled for consistent strict mode
     "baseUrl": ".",
     "paths": {
       "*": ["src/*", "node_modules/*"]
