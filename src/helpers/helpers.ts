@@ -1,14 +1,22 @@
 import algosdk from "algosdk";
 import { getClient, getAccount } from "../config/config.js";
 
-export const storeWeatherData = async (data: WeatherData): Promise<void> => {
+// Assuming GasPriceData is defined as mentioned previously
+interface GasPriceData {
+  regular: number;
+  midGrade: number;
+  premium: number;
+  diesel: number;
+}
+
+export const storeGasPriceData = async (data: GasPriceData): Promise<void> => {
     try {
         const client = getClient();
         const account = getAccount();
         const suggestedParams = await client.getTransactionParams().do();
 
         const enc = new TextEncoder();
-        const note = enc.encode(JSON.stringify(data)); // Encoding the weather data as a string in the transaction note
+        const note = enc.encode(JSON.stringify(data)); // Encoding the gas price data as a string in the transaction note
 
         let txn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
             from: account.addr,
@@ -23,6 +31,6 @@ export const storeWeatherData = async (data: WeatherData): Promise<void> => {
 
         console.log("Transaction successful with ID: ", sendTxn.txId);
     } catch (error) {
-        console.error("Failed to store weather data:", error);
+        console.error("Failed to store gas price data:", error);
     }
 };
