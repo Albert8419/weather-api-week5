@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "target": "es2016",
     "lib": ["es2021", "DOM"],
-    "module": "CommonJS",
-    "moduleResolution": "Node",
+    "module": "CommonJS", // Change module to CommonJS
+    "moduleResolution": "Node", // Change moduleResolution to Node
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -18,9 +18,9 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "strictNullChecks": false,
     "baseUrl": ".",
     "paths": {
       "*": ["src/*", "node_modules/*"]

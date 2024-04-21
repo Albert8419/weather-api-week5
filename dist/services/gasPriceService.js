@@ -8,9 +8,9 @@ const dotenv_1 = tslib_1.__importDefault(require("dotenv"));
 dotenv_1.default.config();
 const API_KEY = process.env.COLLECTAPI_KEY; // Ensure you set this in your .env file
 const API_URL = 'https://api.collectapi.com/gasPrice/nationalAverage';
-const fetchGasPrices = async () => {
+const fetchGasPrices = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     try {
-        const response = await axios_1.default.get(API_URL, {
+        const response = yield axios_1.default.get(API_URL, {
             headers: {
                 'content-type': 'application/json',
                 'authorization': `apikey ${API_KEY}`
@@ -28,6 +28,6 @@ const fetchGasPrices = async () => {
         console.error('Failed to fetch gas prices:', error);
         throw error;
     }
-};
+});
 exports.fetchGasPrices = fetchGasPrices;
 //# sourceMappingURL=gasPriceService.js.map

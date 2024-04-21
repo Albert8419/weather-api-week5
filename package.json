@@ -2,7 +2,7 @@
   "name": "weather_api_new2menot4u",
   "version": "1.0.0",
   "description": "My first weather API week 5",
-  "type": "module",
+  "type": "commonjs",
   "author": "Lucian Duta",
   "license": "MIT",
   "engines": {
