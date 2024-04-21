@@ -11,7 +11,8 @@ const getGasPrices = (req, res) => tslib_1.__awaiter(void 0, void 0, void 0, fun
             console.error('Validation error', errors.array());
             return res.status(400).json({ errors: errors.array() });
         }
-        const gasPrices = yield (0, gasPriceService_1.fetchGasPrices)(); // Fetch gas prices
+        const city = req.params.city; // Extract city from request parameters
+        const gasPrices = yield (0, gasPriceService_1.fetchGasPrices)(city); // Pass city to fetchGasPrices
         return res.status(200).json({ gasPrices });
     }
     catch (error) {

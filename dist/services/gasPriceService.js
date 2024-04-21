@@ -7,16 +7,17 @@ const axios_1 = tslib_1.__importDefault(require("axios"));
 const dotenv_1 = tslib_1.__importDefault(require("dotenv"));
 dotenv_1.default.config();
 const API_KEY = process.env.COLLECTAPI_KEY; // Ensure you set this in your .env file
-const API_URL = 'https://api.collectapi.com/gasPrice/nationalAverage';
-const fetchGasPrices = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+const API_URL = 'https://api.collectapi.com/gasPrice/gas-prices-api'; // Updated API URL
+const fetchGasPrices = (city) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield axios_1.default.get(API_URL, {
             headers: {
                 'content-type': 'application/json',
                 'authorization': `apikey ${API_KEY}`
-            }
+            },
+            params: { city } // Add city parameter to request
         });
-        const data = response.data.result; // Assuming 'result' contains the relevant gas price data
+        const data = response.data.result;
         return {
             regular: data.regular,
             midGrade: data.midGrade,
