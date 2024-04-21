@@ -1,7 +1,7 @@
 // In gasPriceController.ts
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import { fetchGasPrices } from '../services/gasPricesService';
+import { fetchGasPrices } from '../services/gasPriceService';
 
 export const getGasPrices = async (req: Request, res: Response) => {
   const errors = validationResult(req);
