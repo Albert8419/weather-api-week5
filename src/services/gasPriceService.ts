@@ -1,26 +1,27 @@
-// gasPriceService.ts
-
 import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY; // Ensure you set this in your .env file
-const API_URL = 'https://gas-price.p.rapidapi.com/gasPrices'; // RapidAPI Gas Price API endpoint
+const YOUR_API_KEY = process.env.GAS_PRICES_API_KEY; // Changed to a more specific environment variable name
+const API_URL = 'https://gas-price.p.rapidapi.com/gasPrices'; // Ensure this is the correct endpoint
 
 export const fetchGasPrices = async (city: string) => {
     try {
         const response = await axios.get(API_URL, {
             headers: {
-                'content-type': 'application/json',
                 'x-rapidapi-host': 'gas-price.p.rapidapi.com',
-                'x-rapidapi-key': RAPIDAPI_KEY
+                'x-rapidapi-key': YOUR_API_KEY
             },
             params: { city }
         });
         const data = response.data;
-        return data; // Adjust this based on the response structure of the API
+        return data; // Confirm the structure of this data matches what your application expects
     } catch (error) {
         console.error('Failed to fetch gas prices:', error);
-        throw error;
+        if (error.response) {
+            // Handle HTTP-specific errors here
+            console.error('API response error:', error.response.status, error.response.data);
+        }
+        throw error; // Consider custom error handling or reformatting error messages
     }
 };

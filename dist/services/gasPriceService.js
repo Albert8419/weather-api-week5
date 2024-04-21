@@ -6,7 +6,7 @@ const tslib_1 = require("tslib");
 const axios_1 = tslib_1.__importDefault(require("axios"));
 const dotenv_1 = tslib_1.__importDefault(require("dotenv"));
 dotenv_1.default.config();
-const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY; // Ensure you set this in your .env file
+const YOUR_API_KEY = process.env.RAPIDAPI_KEY; // Ensure you set this in your .env file
 const API_URL = 'https://gas-price.p.rapidapi.com/gasPrices'; // RapidAPI Gas Price API endpoint
 const fetchGasPrices = (city) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -14,7 +14,7 @@ const fetchGasPrices = (city) => tslib_1.__awaiter(void 0, void 0, void 0, funct
             headers: {
                 'content-type': 'application/json',
                 'x-rapidapi-host': 'gas-price.p.rapidapi.com',
-                'x-rapidapi-key': RAPIDAPI_KEY
+                'x-rapidapi-key': YOUR_API_KEY
             },
             params: { city }
         });

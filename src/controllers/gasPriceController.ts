@@ -1,6 +1,7 @@
 // gasPriceController.ts
 import { Request, Response } from 'express';
 import axios from 'axios';
+import { getGasApiAxiosClient } from './config'; // Assuming you export it from config.ts as shown in the previous step.
 
 export const getGasPrices = async (req: Request, res: Response) => {
     try {
@@ -9,16 +10,9 @@ export const getGasPrices = async (req: Request, res: Response) => {
             return res.status(400).json({ error: 'City parameter is missing' });
         }
 
-        const options = {
-            method: 'GET',
-            url: `https://gas-price.p.rapidapi.com/europeanCountries?city=${city}`,
-            headers: {
-                'X-RapidAPI-Key': 'YOUR_API_KEY',
-                'X-RapidAPI-Host': 'gas-price.p.rapidapi.com'
-            }
-        };
+        const axiosInstance = getGasApiAxiosClient(); // Use the Axios instance configured with the API key and host.
 
-        const response = await axios.request(options);
+        const response = await axiosInstance.get(`/europeanCountries?city=${city}`);
         const gasPrices = response.data;
         return res.status(200).json(gasPrices);
     } catch (error) {

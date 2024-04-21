@@ -10,6 +10,9 @@ interface GasPriceData {
     diesel: number;
 }
 
+// Retrieve minimum transaction amount from environment variables or set default
+const MIN_TRANSACTION_AMOUNT = parseInt(process.env.ALGORAND_MIN_TRANSACTION_AMOUNT || "1000");
+
 export const storeGasPriceData = async (data: GasPriceData): Promise<void> => {
     try {
         const client = getClient();
@@ -21,8 +24,8 @@ export const storeGasPriceData = async (data: GasPriceData): Promise<void> => {
 
         let txn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
             from: account.addr,
-            to: account.addr, // Sending the transaction to oneself
-            amount: 1000, // Minimum amount to facilitate the transaction (consider making it configurable)
+            to: account.addr, // Ensure this is the correct recipient. If it's a data record, this is fine.
+            amount: MIN_TRANSACTION_AMOUNT, // Using the configurable minimum transaction amount
             note: note,
             suggestedParams: suggestedParams,
         });
@@ -35,6 +38,6 @@ export const storeGasPriceData = async (data: GasPriceData): Promise<void> => {
         // Additional logic to wait for transaction confirmation if needed
     } catch (error) {
         console.error("Failed to store gas price data:", error);
-        throw error; // Rethrow the error to propagate it to the caller
+        throw error; // Propagate the error to the caller
     }
 };
