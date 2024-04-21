@@ -1,7 +1,7 @@
 // gasPriceController.ts
 import { Request, Response } from 'express';
 import axios from 'axios';
-import { getGasApiAxiosClient } from './config'; // Assuming you export it from config.ts as shown in the previous step.
+import { getGasApiAxiosClient } from '../config/config.js'; // Correct relative path
 
 export const getGasPrices = async (req: Request, res: Response) => {
     try {

@@ -1,11 +1,11 @@
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import gasPricesRoutes from './routes/gasPricesRoutes.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Use an environment variable for the port
+const PORT = process.env.PORT || 3000;
 
 app.use(cors()); // Enable all CORS requests
 app.use(helmet()); // Helps secure your Express apps by setting various HTTP headers
@@ -16,8 +16,8 @@ app.use(express.json()); // Built-in middleware for parsing JSON
 app.use('/api/v1/gas-prices', gasPricesRoutes);
 
 // Global error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack); // Correctly accessing 'stack' property on Error type
   res.status(500).send('Something broke!');
 });
 

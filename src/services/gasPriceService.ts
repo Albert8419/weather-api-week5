@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -16,11 +16,16 @@ export const fetchGasPrices = async (city: string) => {
         });
         const data = response.data;
         return data; // Confirm the structure of this data matches what your application expects
-    } catch (error) {
+    } catch (error: unknown) {
         console.error('Failed to fetch gas prices:', error);
-        if (error.response) {
-            // Handle HTTP-specific errors here
-            console.error('API response error:', error.response.status, error.response.data);
+        if (axios.isAxiosError(error)) {
+            // Now we can safely access error.response because we've asserted the error is an AxiosError
+            if (error.response) {
+                console.error('API response error:', error.response.status, error.response.data);
+            }
+        } else {
+            // Error is not from Axios, handle or log appropriately
+            console.error('An unexpected error occurred');
         }
         throw error; // Consider custom error handling or reformatting error messages
     }

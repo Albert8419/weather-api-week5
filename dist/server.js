@@ -7,7 +7,7 @@ const helmet_1 = tslib_1.__importDefault(require("helmet"));
 const morgan_1 = tslib_1.__importDefault(require("morgan"));
 const gasPricesRoutes_js_1 = tslib_1.__importDefault(require("./routes/gasPricesRoutes.js"));
 const app = (0, express_1.default)();
-const PORT = process.env.PORT || 3000; // Use an environment variable for the port
+const PORT = process.env.PORT || 3000;
 app.use((0, cors_1.default)()); // Enable all CORS requests
 app.use((0, helmet_1.default)()); // Helps secure your Express apps by setting various HTTP headers
 app.use((0, morgan_1.default)('combined')); // Log HTTP requests
@@ -16,7 +16,7 @@ app.use(express_1.default.json()); // Built-in middleware for parsing JSON
 app.use('/api/v1/gas-prices', gasPricesRoutes_js_1.default);
 // Global error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
+    console.error(err.stack); // Correctly accessing 'stack' property on Error type
     res.status(500).send('Something broke!');
 });
 app.listen(PORT, () => {

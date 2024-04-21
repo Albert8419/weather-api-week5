@@ -23,7 +23,7 @@ exports.getAccount = getAccount;
 const gasApiToken = process.env.GAS_API_TOKEN || ''; // Add this to your environment variables
 const gasApiHost = 'gas-price.p.rapidapi.com';
 // Initialize Axios client for Gasoline Prices API
-function getGasApiAxiosClient() {
+const getGasApiAxiosClient = () => {
     return axios_1.default.create({
         baseURL: `https://${gasApiHost}`,
         headers: {
@@ -31,6 +31,6 @@ function getGasApiAxiosClient() {
             'X-RapidAPI-Host': gasApiHost,
         },
     });
-}
+};
 exports.getGasApiAxiosClient = getGasApiAxiosClient;
 //# sourceMappingURL=config.js.map

@@ -1,6 +1,6 @@
 import express from 'express';
 import { getGasPrices } from '../controllers/gasPriceController';
-import { validateCity } from '../validators/gasPriceValidators'; // Make sure this path is correct
+import { validateCity } from '../middleware/validators'; // Make sure this path is correct
 
 const router = express.Router();
 

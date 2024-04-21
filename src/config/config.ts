@@ -22,7 +22,7 @@ const gasApiToken = process.env.GAS_API_TOKEN || ''; // Add this to your environ
 const gasApiHost = 'gas-price.p.rapidapi.com';
 
 // Initialize Axios client for Gasoline Prices API
-export function getGasApiAxiosClient() {
+export const getGasApiAxiosClient = () => {
   return axios.create({
     baseURL: `https://${gasApiHost}`,
     headers: {
