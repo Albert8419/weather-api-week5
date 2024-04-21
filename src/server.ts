@@ -1,17 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-
-// Assuming the gas prices route handler file is correctly named and located
-import gasPricesRoutes from './routes/gasPricesRoutes.js';
+import gasPricesRoutes from './routes/gasPricesRoutes.js'; // Assuming this is the correct path to your routes file
 
 const app = express();
 const PORT = 3000;
 
-app.use(cors()); // Enabling CORS for all requests
-app.use(express.json()); // Middleware to parse JSON bodies
+app.use(cors());
+app.use(express.json());
 
-// Update the route to use the gas prices routes handler
-app.use('/api/gas-prices', gasPricesRoutes);
+// Define the route to handle GET requests for gas prices
+app.use('/api/gas-prices', gasPricesRoutes); // This assumes that your gas prices routes are defined in gasPricesRoutes.js
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
