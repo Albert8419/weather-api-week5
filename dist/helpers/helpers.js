@@ -14,7 +14,7 @@ const storeGasPriceData = (data) => tslib_1.__awaiter(void 0, void 0, void 0, fu
         let txn = algosdk_1.default.makePaymentTxnWithSuggestedParamsFromObject({
             from: account.addr,
             to: account.addr, // Sending the transaction to oneself
-            amount: 1000, // Minimum amount to facilitate the transaction
+            amount: 1000, // Minimum amount to facilitate the transaction (consider making it configurable)
             note: note,
             suggestedParams: suggestedParams,
         });
@@ -24,6 +24,7 @@ const storeGasPriceData = (data) => tslib_1.__awaiter(void 0, void 0, void 0, fu
     }
     catch (error) {
         console.error("Failed to store gas price data:", error);
+        throw error; // Rethrow the error to propagate it to the caller
     }
 });
 exports.storeGasPriceData = storeGasPriceData;
