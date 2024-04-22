@@ -12,11 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// Import necessary modules
 const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
-const validators_js_1 = require("../middleware/validators.js");
-const router = express_1.default.Router();
-router.get('/aqi-widget/:city', validators_js_1.validateCity, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+// Create Express app
+const app = (0, express_1.default)();
+const PORT = process.env.PORT || 3000;
+// Define route handler for fetching AQI data based on city
+app.get('/api/v1/aqi-widget/:city', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const city = req.params.city; // Extract the city parameter from the request
         // Make the API call to fetch AQI data for the specified city
@@ -35,4 +38,7 @@ router.get('/aqi-widget/:city', validators_js_1.validateCity, (req, res) => __aw
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 }));
-exports.default = router;
+// Start server
+app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+});
