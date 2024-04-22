@@ -19,16 +19,14 @@ const router = express_1.default.Router();
 router.get('/aqi-widget/:city', validators_js_1.validateCity, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const city = req.params.city; // No need for optional chaining as params is always defined
-        if (!city) {
-            return res.status(400).json({ error: 'City parameter is missing' });
-        }
+        // No need to check for !city here because the validateCity middleware already ensures the city parameter is present and valid
         // Call the controller function to get the response
         const aqiWidgetResponse = yield (0, aqiWidgetController_1.getAqiWidgetData)(city);
         if (aqiWidgetResponse) {
             return res.status(200).json(aqiWidgetResponse);
         }
         else {
-            return res.status(404).json({ error: 'Air quality data not found' });
+            return res.status(404).json({ error: 'Air quality data not found for the specified city' });
         }
     }
     catch (error) {

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAqiWidgetAxiosClient } from '../config/config.js';
+import { fetchAqiWidgetData } from '../services/fetchAqiWidgetData';
 
 export const getAqiWidgetData = async (city: string) => {
     try {
@@ -7,11 +7,9 @@ export const getAqiWidgetData = async (city: string) => {
             throw new Error('City parameter is required');
         }
 
-        const language = 'en'; // Default language
+        // Call the function to fetch AQI widget data from the external API
+        const aqiWidgetData = await fetchAqiWidgetData(city);
 
-        const axiosInstance = getAqiWidgetAxiosClient();
-        const response = await axiosInstance.get(`/feed/${city}/${language}/feed.v1.js`);
-        const aqiWidgetData = response.data;
         return aqiWidgetData;
     } catch (error) {
         console.error('Error fetching AQI widget data:', error);

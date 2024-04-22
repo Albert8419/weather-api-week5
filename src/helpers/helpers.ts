@@ -51,3 +51,10 @@ export const storeAQIWidgetData = async (data: AQIWidgetData): Promise<void> => 
     throw error; // Propagate the error to the caller
   }
 };
+
+interface AQIWidgetData {
+  // Define the structure of AQI widget data
+  city: string;
+  aqi: number;
+  // Add more properties as needed
+}
