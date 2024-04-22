@@ -13,15 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const axios_1 = __importDefault(require("axios")); // Import Axios to make the API call
+const axios_1 = __importDefault(require("axios"));
 const validators_js_1 = require("../middleware/validators.js");
 const router = express_1.default.Router();
 router.get('/aqi-widget/:city', validators_js_1.validateCity, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const city = req.params.city; // No need for optional chaining as params is always defined
-        // No need to check for !city here because the validateCity middleware already ensures the city parameter is present and valid
-        // Make the API call to fetch AQI data
-        const response = yield axios_1.default.get(`https://api.waqi.info/feed/here/?token=e1e26600861c3e38c921da095baad05c07d509cd`);
+        const city = req.params.city; // Extract the city parameter from the request
+        // Make the API call to fetch AQI data for the specified city
+        const response = yield axios_1.default.get(`https://api.waqi.info/feed/${city}/?token=e1e26600861c3e38c921da095baad05c07d509cd`);
         // Extract the AQI data from the API response
         const aqiWidgetResponse = response.data;
         if (aqiWidgetResponse) {
