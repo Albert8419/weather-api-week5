@@ -6,13 +6,13 @@ const router = express.Router();
 
 router.get('/aqi-widget/:city', validateCity, async (req: Request, res: Response) => {
     try {
-        const city = req.params?.city;
+        const city = req.params.city; // No need for optional chaining as params is always defined
         if (!city) {
             return res.status(400).json({ error: 'City parameter is missing' });
         }
 
         // Call the controller function to get the response
-        const aqiWidgetResponse = await getAqiWidgetData(req, res, city);
+        const aqiWidgetResponse = await getAqiWidgetData(city);
 
         if (aqiWidgetResponse) {
             return res.status(200).json(aqiWidgetResponse);
