@@ -1,21 +1,20 @@
 import { Request, Response } from 'express';
-import { getAqiWidgetAxiosClient } from '../config/config.js'; // Correct relative path
+import { getAqiWidgetAxiosClient } from '../config/config.js';
 
 export const getAqiWidgetData = async (city: string) => {
     try {
         if (!city) {
-            return null; // Return null instead of responding with an error directly
+            throw new Error('City parameter is required');
         }
 
-        const language = 'en'; // Get language from query parameter or default to English
+        const language = 'en'; // Default language
 
-        const axiosInstance = getAqiWidgetAxiosClient(); // Use the Axios instance configured for AQI widget API.
-
+        const axiosInstance = getAqiWidgetAxiosClient();
         const response = await axiosInstance.get(`/feed/${city}/${language}/feed.v1.js`);
         const aqiWidgetData = response.data;
         return aqiWidgetData;
     } catch (error) {
         console.error('Error fetching AQI widget data:', error);
-        throw error; // Propagate the error to the caller
+        throw error;
     }
 };

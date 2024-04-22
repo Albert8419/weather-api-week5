@@ -1,13 +1,13 @@
-import algosdk from 'algosdk';
-import { Algodv2 } from 'algosdk';
-import { mnemonicToSecretKey } from 'algosdk';
+import algosdk, { Algodv2, mnemonicToSecretKey } from 'algosdk';
 import { TextEncoder } from 'util';
 
 // Algorand configurations
-const algodToken = process.env.ALGORAND_TOKEN || '';
-const server = process.env.ALGORAND_SERVER || 'http://localhost';
-const port = parseInt(process.env.ALGORAND_PORT || '4001');
-const mnemonic = process.env.ALGORAND_MNEMONIC || '';
+const { ALGORAND_TOKEN, ALGORAND_SERVER, ALGORAND_PORT, ALGORAND_MNEMONIC, ALGORAND_MIN_TRANSACTION_AMOUNT } = process.env;
+const algodToken = ALGORAND_TOKEN || '';
+const server = ALGORAND_SERVER || 'http://localhost';
+const port = parseInt(ALGORAND_PORT || '4001');
+const mnemonic = ALGORAND_MNEMONIC || '';
+const MIN_TRANSACTION_AMOUNT = parseInt(ALGORAND_MIN_TRANSACTION_AMOUNT || '1000');
 
 // Initialize Algorand client
 export function getClient(): Algodv2 {
@@ -19,34 +19,27 @@ export function getAccount(): { addr: string; sk: Uint8Array } {
   return mnemonicToSecretKey(mnemonic);
 }
 
-// Retrieve minimum transaction amount from environment variables or set default
-const MIN_TRANSACTION_AMOUNT = parseInt(process.env.ALGORAND_MIN_TRANSACTION_AMOUNT || '1000');
-
-// Assuming AQIWidgetData is defined in global.d.ts
-interface AQIWidgetData {
-  city?: string;
-  aqi: number;
-  details: string;
-  timestamp?: Date;
-}
-
+// Store AQI Widget data on the Algorand blockchain
 export const storeAQIWidgetData = async (data: AQIWidgetData): Promise<void> => {
   try {
     const client = getClient();
     const account = getAccount();
     const suggestedParams = await client.getTransactionParams().do();
 
+    // Encode AQI widget data as a string in the transaction note
     const enc = new TextEncoder();
-    const note = enc.encode(JSON.stringify(data)); // Encoding the AQI widget data as a string in the transaction note
+    const note = enc.encode(JSON.stringify(data));
 
+    // Create a payment transaction with suggested parameters
     const txn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
       from: account.addr,
-      to: account.addr, // Ensure this is the correct recipient. If it's a data record, this is fine.
-      amount: MIN_TRANSACTION_AMOUNT, // Using the configurable minimum transaction amount
+      to: account.addr, // Ensure this is the correct recipient
+      amount: MIN_TRANSACTION_AMOUNT,
       note: note,
       suggestedParams: suggestedParams,
     });
 
+    // Sign and send the transaction
     const signedTxn = txn.signTxn(account.sk);
     const sendTxn = await client.sendRawTransaction(signedTxn).do();
 

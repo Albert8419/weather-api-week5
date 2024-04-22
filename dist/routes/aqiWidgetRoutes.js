@@ -17,14 +17,13 @@ const aqiWidgetController_1 = require("../controllers/aqiWidgetController");
 const validators_js_1 = require("../middleware/validators.js");
 const router = express_1.default.Router();
 router.get('/aqi-widget/:city', validators_js_1.validateCity, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     try {
-        const city = (_a = req.params) === null || _a === void 0 ? void 0 : _a.city;
+        const city = req.params.city; // No need for optional chaining as params is always defined
         if (!city) {
             return res.status(400).json({ error: 'City parameter is missing' });
         }
         // Call the controller function to get the response
-        const aqiWidgetResponse = yield (0, aqiWidgetController_1.getAqiWidgetData)(req, res, city);
+        const aqiWidgetResponse = yield (0, aqiWidgetController_1.getAqiWidgetData)(city);
         if (aqiWidgetResponse) {
             return res.status(200).json(aqiWidgetResponse);
         }
