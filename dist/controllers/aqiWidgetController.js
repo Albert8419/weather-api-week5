@@ -10,16 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAqiWidgetData = void 0;
-const config_js_1 = require("../config/config.js");
+const fetchAqiWidgetData_1 = require("../services/fetchAqiWidgetData");
 const getAqiWidgetData = (city) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!city) {
             throw new Error('City parameter is required');
         }
-        const language = 'en'; // Default language
-        const axiosInstance = (0, config_js_1.getAqiWidgetAxiosClient)();
-        const response = yield axiosInstance.get(`/feed/${city}/${language}/feed.v1.js`);
-        const aqiWidgetData = response.data;
+        // Call the function to fetch AQI widget data from the external API
+        const aqiWidgetData = yield (0, fetchAqiWidgetData_1.fetchAqiWidgetData)(city);
         return aqiWidgetData;
     }
     catch (error) {
