@@ -1,13 +1,10 @@
-// Import necessary modules
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response } from 'express';
 import axios from 'axios';
+import { validateCity } from '../middleware/validators.js';
 
-// Create Express app
-const app = express();
-const PORT = process.env.PORT || 3000;
+const router = express.Router();
 
-// Define route handler for fetching AQI data based on city
-app.get('/api/v1/aqi-widget/:city', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/aqi-widget/:city', validateCity, async (req: Request, res: Response) => {
     try {
         const city = req.params.city; // Extract the city parameter from the request
 
@@ -28,7 +25,4 @@ app.get('/api/v1/aqi-widget/:city', async (req: Request, res: Response, next: Ne
     }
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+export default router;
