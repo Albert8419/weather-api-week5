@@ -1,7 +1,7 @@
 import express from 'express';
 import { Request, Response } from 'express';
 import axios from 'axios';
-import { validateCity } from '/middleware/validators';
+import { validateCity } from '../middleware/validators.js';
 
 const router = express.Router();
 

@@ -14,9 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
-const validators_js_1 = require("../middleware/validators.js");
+const validators_1 = require("/middleware/validators");
 const router = express_1.default.Router();
-router.get('/:city', validators_js_1.validateCity, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get('/:city', validators_1.validateCity, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const city = req.params.city;
         const response = yield axios_1.default.get(`https://api.waqi.info/feed/${city}/?token=e1e26600861c3e38c921da095baad05c07d509cd`);
