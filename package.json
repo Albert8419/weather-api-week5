@@ -9,7 +9,7 @@
     "watch": "tsc -w",
     "dev": "nodemon dist/server.js",
     "lint": "eslint src --ext .ts,.js",
-    "clean": "rm -rf dist"
+    "clean": "del /q /s dist"
   },
   "repository": {
     "type": "git",

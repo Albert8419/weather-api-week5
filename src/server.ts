@@ -1,10 +1,8 @@
-// Import necessary modules
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import aqiWidgetRoutes from './routes/aqiWidgetRoutes';
-
+import aqiWidgetRoutes from './routes/aqiWidgetRoutes'; // Adjusted import statement
 
 // Create Express app
 const app = express();
